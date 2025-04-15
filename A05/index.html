@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Siargao Island</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f8ff;
+      color: #333;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode {
+      background: #121212;
+      color: #f8f8f2;
+    }
+
+    body.dark-mode header h1 {
+      color: #f8f8f2;
+      /* Removed background in dark mode */
+    }
+
+    body.dark-mode section:nth-child(even) {
+      background: #212121;
+    }
+
+    body.dark-mode h2 {
+      color: #bb86fc;
+    }
+
+    body.dark-mode .place {
+      background: #1e1e1e;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    body.dark-mode footer {
+      background: #bb86fc;
+      color: #121212;
+    }
+
+    /* Dark mode styles for the About section */
+    body.dark-mode .about-container .about-image img {
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Dark mode switch button styles */
+    .dark-mode-switch {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .dark-mode-switch span {
+      display: block;
+      width: 24px;
+      height: 24px;
+      background-color: #333;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode .dark-mode-switch span {
+      background-color: #f8f8f2;
+      box-shadow: 0 1px 3px rgba(255, 255, 255, 0.3);
+    }
+
+    header {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: url('Siargao.png') no-repeat center center/cover;
+      z-index: -1;
+    }
+
+    header h1 {
+      font-size: 4rem;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      /* Removed default background */
+    }
+
+    section {
+      padding: 50px 20px;
+      max-width: 1100px;
+      margin: auto;
+      margin-top: 40px;
+      /* Added initial top margin for the second section */
+      /* Added margin-bottom to all sections */
+      margin-bottom: 40px;
+      text-align: center;
+      /* Added text-align: center; to center the content */
+    }
+
+    section:last-child {
+      /* Remove margin-bottom from the last section (Plan Your Visit) */
+      margin-bottom: 50px;
+      /* Adjusted margin for the last section */
+    }
+
+    section:nth-child(even) {
+      background: #e6f2ff;
+    }
+
+    h2 {
+      text-align: center;
+      color: #1e90ff;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .places {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .place {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 260px;
+      transition: transform 0.3s;
+    }
+
+    .place:hover {
+      transform: translateY(-5px);
+    }
+
+    .place img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .place p {
+      padding: 15px;
+    }
+
+    footer {
+      background: #1e90ff;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Styles for the About Siargao section */
+    .about-container {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .about-container .about-image {
+      flex: 1;
+    }
+
+    .about-container .about-image img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-container .about-text {
+      flex: 1;
+    }
+
+    .about-container ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .about-container ul li {
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      .places {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .about-container {
+        flex-direction: column;
+      }
+
+      .about-container .about-image,
+      .about-container .about-text {
+        flex: 0 1 auto;
+        width: 100%;
+      }
+
+      .about-container .about-image img {
+        margin-bottom: 20px;
+      }
+
+      section {
+        margin-top: 30px;
+        /* Adjust margin for smaller screens */
+        margin-bottom: 30px;
+        /* Added margin-bottom for smaller screens */
+        text-align: center;
+        /* Added text-align: center; for smaller screens */
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <button class="dark-mode-switch" onclick="toggleDarkMode()">
+    <span></span>
+  </button>
+
+  <header>
+    <h1>Welcome to SIARGAO!</h1>
+  </header>
+
+  <section>
+    <h2>Why Siargao?</h2>
+    <p>Siargao is a tear-drop shaped island in the Philippines known for its surfing waves, crystal-clear waters, and
+      laid-back island vibes. Whether you're chasing waves or simply looking to relax, Siargao has something for
+      everyone.</p>
+  </section>
+
+  <section>
+    <h2 class="text-center mb-4">About Siargao</h2>
+    <div class="about-container">
+      <div class="about-image">
+        <img src="siargao.jpg" alt="Siargao Island Landscape" class="img-fluid rounded shadow" />
+      </div>
+      <div class="about-text">
+        <p>Siargao is a stunning island located in the province of Surigao del Norte, Philippines. It's renowned
+          globally as the "Surfing Capital of the Philippines," with its most famous break, Cloud 9, attracting surfers
+          from all over the world. Beyond surfing, Siargao boasts breathtaking natural beauty, including pristine
+          beaches, lush mangrove forests, enchanting lagoons, and numerous small islands perfect for exploration.</p>
+        <ul>
+          <li>📍 Location: Surigao del Norte, Philippines</li>
+          <li>🏄 Famous For: World-class surfing (Cloud 9), island hopping, lagoons</li>
+          <li>🏝️ Key Attractions: Cloud 9, Sugba Lagoon, Guyam Island, Daku Island, Naked Island, Magpupungko Rock
+            Pools</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Top Places to Visit in Siargao</h2>
+    <div class="places">
+      <div class="place">
+        <img src="Cloud 9.jpg" alt="Cloud 9 Siargao">
+        <p><strong>Cloud 9</strong><br>World-famous surf spot with a stunning boardwalk and breathtaking sunsets.</p>
+      </div>
+      <div class="place">
+        <img src="Daku Island Siargao.jpg" alt="Daku Island">
+        <p><strong>Daku Island</strong><br>The largest of the three islands, known for its white sand beaches and local
+          community.</p>
+      </div>
+      <div class="place">
+        <img src="Guyam Island Siargao.jpg" alt="Guyam Island">
+        <p><strong>Guyam Island</strong><br>Small, picturesque island with swaying palm trees and vibrant coral reefs.
+        </p>
+      </div>
+      <div class="place">
+        <img src="Sugba Lagoon,  Siargao, Philippines.jpg" alt="Sugba Lagoon">
+        <p><strong>Sugba Lagoon</strong><br>Kayak, paddleboard, or dive into this beautiful, turquoise lagoon surrounded
+          by mountains.</p>
+      </div>
+      <div class="place">
+        <img src="Naked Island.jpg" alt="Naked Island">
+        <p><strong>Naked Island</strong><br>A bare, beautiful sandbar perfect for sunbathing and swimming in clear
+          waters.</p>
+      </div>
+      <div class="place">
+        <img src="MAGPUPUNGKO ROCK POOLS.jpg" alt="Magpupungko Rock Pools">
+        <p><strong>Magpupungko Rock Pools</strong><br>Natural tidal pools with crystal-clear water, best visited during
+          low tide.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-bottom: 50px;">
+    <h2>Plan Your Visit</h2>
+    <p style="text-align: center;">Ready to explore Siargao? Pack your sunscreen, book your ticket, and get ready for
+      the island adventure of a lifetime!</p>
+  </section>
+
+  <footer>
+    <p>JetFolio | 2025 </p>
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    // Check for saved theme preference on page load
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+    } else if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.remove('dark-mode');
+    }
+
+    // Save theme preference on toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    }
+  </script>
+
+</body>
+
+</html>
