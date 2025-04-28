@@ -197,12 +197,23 @@
             "Ginataang Gulay.jpg", "tinolang manok.jpg", "Pork BBQ.jpg", "puto.jpg", "Bicol Express.jpg", "Suman.jpg",
             "kutsinta.jpg", "tortang talong.jpg", "sinangag.jpg", "Beef Kaldereta.jpg", "lechon paksiw.jpg", "Sinaing na Tulingan.jpg"
         ];
-
+    
         var rowElement = document.getElementById("container-row");
         for (var i = 0; i < titles.length; i++) {
-            rowElement.innerHTML += '<div class="col-6 col-sm-6 col-md-4 col-lg-3"><div class="card my-3 shadow rounded-5 overflow-hidden"><img src="' + pictures[i] + '" class="card-img-top" alt="' + titles[i] + '"><div class="card-body"><h5 class="card-title">' + titles[i] + '</h5></div></div></div>';
+            rowElement.innerHTML += `
+                <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card my-3 shadow rounded-5 overflow-hidden"
+                        onmouseover="this.classList.add('shadow-lg')" 
+                        onmouseout="this.classList.remove('shadow-lg')">
+                        <img src="${pictures[i]}" class="card-img-top" alt="${titles[i]}">
+                        <div class="card-body">
+                            <h5 class="card-title">${titles[i]}</h5>
+                        </div>
+                    </div>
+                </div>`;
         }
     </script>
+    
 
     <div class="class">
         <h2 style="my-5; margin-left: 50px;"></h2>
@@ -212,6 +223,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous">
         </script>
-    
+
 </body>
 </html>
