@@ -8,76 +8,61 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <style>
-        body {
-            background-color: #e0f7fa;
-            /* Very light cyan background */
-        }
-
         .header-pupl {
             background-color: #00bcd4 !important;
-            /* Cyan header for PUP */
             color: white !important;
         }
 
         .contact-section {
             background-color: #00bcd4 !important;
-            /* Cyan background for Contact */
             color: white !important;
         }
 
         .card {
             border: 1px solid #00bcd4;
-            /* Cyan border for cards */
             border-radius: 10px;
             box-shadow: 5px 5px 10px #b2ebf2;
-            /* Light cyan shadow for cards */
         }
 
-        .card-body {
-            background-color: white;
+        [data-bs-theme="dark"] .card-body {
+            background-color: #212529;
             border-radius: 0 0 10px 10px;
         }
 
-        .card-title {
-            color: #333;
+        [data-bs-theme="dark"] .card-title {
+            color: white;
         }
 
         #inquireButton {
             background-color: white;
             color: #00bcd4;
-            /* Cyan text for Inquire button */
             border: 1px solid #00bcd4;
-            /* Cyan border for Inquire button */
         }
 
         #inquireButton:hover {
             background-color: #b2ebf2;
-            /* Light cyan on hover */
             color: #00bcd4;
         }
 
-        .footer-main {
+        [data-bs-theme="dark"].footer-main {
             background-color: #f5f5f5 !important;
-            /* Light gray for the main footer */
             color: #707070;
         }
 
-        .footer-show {
+        [data-bs-theme="dark"].footer-show {
             background-color: #f5f5f5 !important;
-            /* Light gray for the show footer button */
             color: #707070;
         }
 
-        .footer-show div {
+        [data-bs-theme="dark"].footer-show div {
             color: #333 !important;
-            /* Darker text for show footer button */
         }
     </style>
 
     <script>
         function inquireMouseEnter() {
             var inquireButton = document.getElementById("inquireButton");
-            inquireButton.style.backgroundColor = "#b2ebf2"; /* Light cyan on hover */
+            inquireButton.style.backgroundColor = "#b2ebf2";
             inquireButton.classList.add("shadow");
         }
 
@@ -105,11 +90,14 @@
     </script>
 </head>
 
-<body>
+<body id="body" data-bs-theme="light">
     <div class="container-fluid p-5 mb-3 header-pupl">
+        <div class="d-flex justify-content-between align-items-center"></div>
         <div class="h3 text-center">
             The Filipino Culinary Heritage
         </div>
+        <button id="colorBtn" class="btn btn-dark" onclick="changeMode()">Dark Mode</button>
+    </div>
     </div>
 
     <div class="container my-3">
@@ -169,7 +157,7 @@
                 <div>Lechon Paksiw</div>
                 <div>Sinaing na Tulingan</div>
 
-                <div class="mt-3 text-center" onclick="hideFooter()" style="color: black">Hide</div>
+                <div class="mt-3 text-center footer-hide-toggle" onclick="hideFooter()">Hide</div>
             </div>
         </div>
     </div>
@@ -177,7 +165,7 @@
     <div class="container-fluid p-3 footer-show" id="footerShow" style="display: none">
         <div class="row">
             <div class="col">
-                <div class="text-center" onclick="showFooter()" style="color: black">ShowFooter</div>
+                <div class="text-center footer-show-toggle" onclick="showFooter()">ShowFooter</div>
             </div>
         </div>
     </div>
@@ -197,7 +185,7 @@
             "Ginataang Gulay.jpg", "tinolang manok.jpg", "Pork BBQ.jpg", "puto.jpg", "Bicol Express.jpg", "Suman.jpg",
             "kutsinta.jpg", "tortang talong.jpg", "sinangag.jpg", "Beef Kaldereta.jpg", "lechon paksiw.jpg", "Sinaing na Tulingan.jpg"
         ];
-    
+
         var rowElement = document.getElementById("container-row");
         for (var i = 0; i < titles.length; i++) {
             rowElement.innerHTML += `
@@ -213,7 +201,7 @@
                 </div>`;
         }
     </script>
-    
+
 
     <div class="class">
         <h2 style="my-5; margin-left: 50px;"></h2>
@@ -223,6 +211,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous">
         </script>
+
+    <script>
+        var mode = "light";
+        function changeMode() {
+            var body = document.getElementById("body");
+            var colorBtn = document.getElementById("colorBtn");
+            mode = mode == "light" ? "dark" : "light";
+
+            var btnText = mode == "dark" ? "Light Mode" : "Dark Mode";
+            var btnClass = mode == "dark" ? "btn-light" : "btn-dark";
+
+            colorBtn.classList.remove("btn-light");
+            colorBtn.classList.remove("btn-dark");
+            colorBtn.classList.add(btnClass);
+            colorBtn.innerHTML = btnText;
+
+            body.setAttribute("data-bs-theme", mode);
+        }
+    </script>
 
 </body>
 </html>
